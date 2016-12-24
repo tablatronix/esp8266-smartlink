@@ -71,6 +71,6 @@ Struct RxControl {
 Struct sniffer_buf {
 Struct RxControl rx_ctrl;
 U8 buf [48]; // contains the ieee80211 header
-U16 cnt; / / the number of packets
+U16 cnt; // the number of packets
 U16 len [1]; // The length of the packet
 };
