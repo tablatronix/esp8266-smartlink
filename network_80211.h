@@ -1,77 +1,76 @@
 #define FRAME_TYPE_MANAGEMENT 0
-#define FRAME_TYPE_CONTROL 1
+#define FRAME_TYPE_CONTROL
 #define FRAME_TYPE_DATA 2
-#define FRAME_SUBTYPE_PROBE_REQUEST 0x04
+# Define FRAME_SUBTYPE_PROBE_REQUEST 0x04
 #define FRAME_SUBTYPE_PROBE_RESPONSE 0x05
 #define FRAME_SUBTYPE_BEACON 0x08
 #define FRAME_SUBTYPE_AUTH 0x0b
-#define FRAME_SUBTYPE_DEAUTH 0x0c
+# Define FRAME_SUBTYPE_DEAUTH 0x0c
 #define FRAME_SUBTYPE_DATA 0x14
-typedef struct framectrl_80211
+Typedef struct framectrl_80211
 {
-    //buf[0]
-    u8 Protocol:2;
-    u8 Type:2;
-    u8 Subtype:4;
-    //buf[1]
-    u8 ToDS:1;
-    u8 FromDS:1;
-    u8 MoreFlag:1;
-    u8 Retry:1;
-    u8 PwrMgmt:1;
-    u8 MoreData:1;
-    u8 Protectedframe:1;
-    u8 Order:1;
-} framectrl_80211,*lpframectrl_80211;
+聽聽聽聽// buf [0]
+聽聽聽聽U8 Protocol: 2;
+聽聽聽聽U8 Type: 2;
+聽聽聽聽U8 Subtype: 4;
+聽聽聽聽// buf [1]
+聽聽聽聽U8 ToDS: 1;
+聽聽聽聽U8 FromDS: 1;
+聽聽聽聽U8 MoreFlag: 1;
+聽聽聽聽U8 Retry: 1;
+聽聽聽聽U8 PwrMgmt: 1;
+聽聽聽聽U8 MoreData: 1;
+聽聽聽聽U8 Protectedframe: 1;
+聽聽聽聽U8 Order: 1;
+} Framectrl_80211, * lpframectrl_80211;
 
-typedef struct probe_request_80211
+Typedef struct probe_request_80211
 {
-	struct framectrl_80211 framectrl;
-	uint16 duration;
-	uint8 rdaddr[6];
-	uint8 tsaddr[6];
-	uint8 bssid[6];
-	uint16 number;
-} probe_request, *pprobe_request;
+Struct framectrl_80211 framectrl;
+Uint16 duration;
+Uint8 rdaddr [6];
+Tsintr [6];
+Uint8 bssid [6];
+Uint16 number;
+} Probe_request, * pprobe_request;
 
-typedef struct tagged_parameter
+Typedef struct tagged_parameter
 {
-	/* SSID parameter */
-	uint8 tag_number;
-	uint8 tag_length;
-} tagged_parameter, *ptagged_parameter;
+/ * SSID parameter * /
+Uint8 tag_number;
+Uint8 tag_length;
+} Tagged_parameter, * ptagged_parameter;
 
-struct RxControl {
-    signed rssi:8;//表示该包的信号强度
-    unsigned rate:4;
-    unsigned is_group:1;
-    unsigned:1;
-    unsigned sig_mode:2;//表示该包是否是11n的包，0表示非11n，非0表示11n
-    unsigned legacy_length:12;//如果不是11n的包，它表示包的长度
-    unsigned damatch0:1;
-    unsigned damatch1:1;
-    unsigned bssidmatch0:1;
-    unsigned bssidmatch1:1;
-    unsigned MCS:7;//如果是11n的包，它表示包的调制编码序列，有效值：0-76
-    unsigned CWB:1;//如果是11n的包，它表示是否为HT40的包
-    unsigned HT_length:16;//如果是11n的包，它表示包的长度
-    unsigned Smoothing:1;
-    unsigned Not_Sounding:1;
-    unsigned:1;
-    unsigned Aggregation:1;
-    unsigned STBC:2;
-    unsigned FEC_CODING:1;//如果是11n的包，它表示是否为LDPC的包
-    unsigned SGI:1;
-    unsigned rxend_state:8;
-    unsigned ampdu_cnt:8;
-    unsigned channel:4;//表示该包所在的信道
-    unsigned:12;
+Struct RxControl {
+聽聽聽聽Signed rssi: 8; // said the packet's signal strength
+聽聽聽聽Unsigned rate: 4;
+聽聽聽聽Unsigned is_group: 1;
+聽聽聽聽Unsigned: 1;
+聽聽聽聽Unsigned sig_mode: 2; // 11n that the packet is a packet, 0 said non-11n, non-0 said 11n
+聽聽聽聽Unsigned legacy_length: 12; // If it is not 11n, it represents the length of the packet
+聽聽聽聽Unsigned damatch0: 1;
+聽聽聽聽Unsigned damatch1: 1;
+聽聽聽聽Unsigned bssidmatch0: 1;
+聽聽聽聽Unsigned bssidmatch1: 1;
+聽聽聽聽Unsigned MCS: 7; // If it is 11n of the packet, which represents the modulation coding sequence of packets, valid values: 0-76
+聽聽聽聽Unsigned CWB: 1; // If it is 11n of the packet, it indicates whether the HT40 package
+聽聽聽聽Unsigned HT_length: 16; // If it is 11n of the package, which said the length of the package
+聽聽聽聽Unsigned Smoothing: 1;
+聽聽聽聽Unsigned Not_Sounding: 1;
+聽聽聽聽Unsigned: 1;
+聽聽聽聽Unsigned Aggregation: 1;
+聽聽聽聽Unsigned STBC: 2;
+聽聽聽聽Unsigned FEC_CODING: 1; // If it is 11n packet, it indicates whether the LDPC package
+聽聽聽聽Unsigned SGI: 1;
+聽聽聽聽Unsigned rxend_state: 8;
+聽聽聽聽Unsigned ampdu_cnt: 8;
+聽聽聽聽Unsigned channel: 4; // said the packet where the channel
+聽聽聽聽Unsigned: 12;
 };
 
-struct sniffer_buf{
-	struct RxControl rx_ctrl;
-	u8 buf[48];//包含ieee80211包头
-	u16 cnt;//包的个数
-	u16 len[1];//包的长度
+Struct sniffer_buf {
+Struct RxControl rx_ctrl;
+U8 buf [48]; // contains the ieee80211 header
+U16 cnt; / / the number of packets
+U16 len [1]; // The length of the packet
 };
-
